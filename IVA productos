@@ -1,0 +1,51 @@
+/* Productos con IVA */
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+public class Ejercicio4 {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        // Ingreso de los datos del producto
+        System.out.println("Ingrese el nombre del producto:");
+        String nombreProducto = br.readLine();
+
+        System.out.println("Ingrese el precio del producto:");
+        double precio = Double.parseDouble(br.readLine());
+
+        System.out.println("¿El producto tiene IVA? (si/no):");
+        String tieneIVA = br.readLine().toLowerCase(); // Convertir a minúsculas para evitar errores con "Si" o "SI"
+
+        // Inicializar la variable del IVA
+        double iva = 0;
+
+        // Si el producto tiene IVA, calcular según las condiciones dadas
+        if (tieneIVA.equals("si")) {
+            if (precio <= 500) {
+                iva = 0.12; // 12%
+            } else if (precio > 500 && precio <= 1500) {
+                iva = 0.14; // 14%
+            } else if (precio > 1500) {
+                iva = 0.15; // 15%
+            }
+        } else if (tieneIVA.equals("no")) {
+            iva = 0; // Sin IVA
+        } else {
+            System.out.println("Respuesta inválida. Debes escribir 'si' o 'no'.");
+            return; // Finalizar si la respuesta no es válida
+        }
+
+        // Calcular el valor del IVA
+        double valorIVA = precio * iva;
+        double precioFinal = precio + valorIVA;
+
+        // Mostrar los resultados
+        System.out.println("Producto: " + nombreProducto);
+        System.out.println("Precio sin IVA: $" + precio);
+        System.out.println("Valor del IVA: $" + valorIVA);
+        System.out.println("Precio final con IVA: $" + precioFinal);
+    }
+}

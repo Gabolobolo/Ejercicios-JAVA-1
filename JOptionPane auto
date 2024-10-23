@@ -1,0 +1,30 @@
+/* JOptionPane */
+import javax.swing.JOptionPane;
+
+public class Ejercicio3 {
+    public static void main(String[] args) {
+        String numeroMotor = JOptionPane.showInputDialog("Ingrese el número de motor:");
+        String ventanas = JOptionPane.showInputDialog("Ingrese el número de ventanas:");
+        String puertas = JOptionPane.showInputDialog("Ingrese la cantidad de puertas:");
+        String marca = JOptionPane.showInputDialog("Ingrese la marca del vehículo:");
+        String modelo = JOptionPane.showInputDialog("Ingrese el modelo del vehículo:");
+        String kilometrajeInicialStr = JOptionPane.showInputDialog("Ingrese el kilometraje inicial:");
+        String kilometrajeFinalStr = JOptionPane.showInputDialog("Ingrese el kilometraje final:");
+
+        int kilometrajeInicial = Integer.parseInt(kilometrajeInicialStr);
+        int kilometrajeFinal = Integer.parseInt(kilometrajeFinalStr);
+        int kilometrosRecorridos = kilometrajeFinal - kilometrajeInicial;
+
+        String mensaje = "Información del Vehículo:\n"
+                + "Número de Motor: " + numeroMotor + "\n"
+                + "Número de Ventanas: " + ventanas + "\n"
+                + "Cantidad de Puertas: " + puertas + "\n"
+                + "Marca: " + marca + "\n"
+                + "Modelo: " + modelo + "\n"
+                + "Kilometraje Inicial: " + kilometrajeInicial + "\n"
+                + "Kilometraje Final: " + kilometrajeFinal + "\n"
+                + "Kilómetros Recorridos: " + kilometrosRecorridos;
+
+        JOptionPane.showMessageDialog(null, mensaje);
+    }
+}

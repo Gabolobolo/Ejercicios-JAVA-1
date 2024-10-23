@@ -1,0 +1,90 @@
+/* Calculadora */ 
+import java.util.Scanner;
+
+public class Ejercicio2 {
+    public static void main(String args[]) {
+        /* public cuando puedo o le permito ser utilizado entre clases
+           private cuando el metodo o variable es utilizado solo es la misma clase*/
+
+        //declarar variables
+        String nombre, apellido;
+        int num1 = 0, num2=0;
+        double resultado = 0;
+
+        //instanciar la clase
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Buenos Dias");
+        System.out.print("Ingrese el nombre: \n");
+        nombre = sc.nextLine();
+        System.out.println("Ingrese su apellido: ");
+        apellido = sc.nextLine();
+
+        System.out.println("El nombre es: " + nombre + "\nSu apellido es: " + apellido);
+
+        /******************* valores numericos **********************************/
+        System.out.println("Escoja la operacion que desea realizar:\n");
+
+        int operacion = sc.nextInt();
+
+        switch (operacion) {
+            case 1:
+                calcularSuma(num1, num2, resultado);
+                break;
+            case 2:
+                calcularResta(num1, num2, resultado);
+                break;
+            case 3:
+                calcularMultiplicacion(num1, num2, resultado);
+                break;
+            case 4:
+                calcularDivision(num1, num2, resultado);
+                break;
+            default:
+                System.out.println("Opcion no valida, por favor ingrese otra opcion.");
+        }
+
+
+
+    }
+    public static void calcularSuma(double num1, double num2, double resultado) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese el numero 1: ");
+        num1 = sc.nextDouble();
+        System.out.println("Ingrese el numero 2: ");
+        num2 = sc.nextDouble();
+        resultado = num1 + num2;
+        System.out.println("El resultado es: " + resultado);
+    }
+    public static void calcularResta(double num1, double num2, double resultado) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese el numero 1: ");
+        num1 = sc.nextDouble();
+        System.out.println("Ingrese el numero 2: ");
+        num2 = sc.nextDouble();
+        resultado = num1 - num2;
+        System.out.println("El resultado es: " + resultado);
+    }
+    public static void calcularMultiplicacion(double num1, double num2, double resultado) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese el numero 1: ");
+        num1 = sc.nextDouble();
+        System.out.println("Ingrese el numero 2: ");
+        num2 = sc.nextDouble();
+        resultado = num1 * num2;
+        System.out.println("El resultado es: " + resultado);
+    }
+    public static void calcularDivision(double num1, double num2, double resultado) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese el numero 1: ");
+        num1 = sc.nextDouble();
+        System.out.println("Ingrese el numero 2: ");
+        num2 = sc.nextDouble();
+        if (num2 == 0) {
+            System.out.println("No se puede dividir para 0. Por favor ingrese otro numero.");
+        }else {
+            resultado = num1 / num2;
+            System.out.println("El resultado es: " + resultado);
+        }
+    }
+}

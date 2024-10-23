@@ -1,0 +1,103 @@
+/* Atributos y clases */
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.Period;
+
+public class Ejercicio5 {
+
+    // Atributos del empleado
+    private String cedula;
+    private String nombre;
+    private String apellido;
+    private String genero;
+    private double salario;
+    private LocalDate fechaNacimiento;
+    private LocalDate fechaIngreso;
+
+    // Constructor para inicializar los datos del empleado
+    public Ejercicio5(String cedula, String nombre, String apellido, String genero, double salario, LocalDate fechaNacimiento, LocalDate fechaIngreso) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.genero = genero;
+        this.salario = salario;
+        this.fechaNacimiento = fechaNacimiento;
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    // Métodos para modificar el salario
+    public void modificarSalario(double nuevoSalario) {
+        this.salario = nuevoSalario;
+    }
+
+    // Método para calcular la edad del empleado
+    public int calcularEdad() {
+        LocalDate ahora = LocalDate.now();
+        return Period.between(this.fechaNacimiento, ahora).getYears();
+    }
+
+    // Método para calcular las prestaciones
+    public double calcularPrestaciones() {
+        LocalDate ahora = LocalDate.now();
+        int antiguedad = Period.between(this.fechaIngreso, ahora).getYears();
+        return (antiguedad * salario) / 12;
+    }
+
+    // Método para mostrar los datos del empleado
+    public void mostrarDatosEmpleado() {
+        System.out.println("Cédula: " + cedula);
+        System.out.println("Nombre: " + nombre + " " + apellido);
+        System.out.println("Género: " + genero);
+        System.out.println("Salario: $" + salario);
+        System.out.println("Fecha de Nacimiento: " + fechaNacimiento);
+        System.out.println("Fecha de Ingreso: " + fechaIngreso);
+        System.out.println("Edad: " + calcularEdad() + " años");
+        System.out.println("Prestaciones: $" + calcularPrestaciones());
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        // Ingresar datos del empleado
+        System.out.println("Ingrese la cédula del empleado:");
+        String cedula = br.readLine();
+
+        System.out.println("Ingrese el nombre del empleado:");
+        String nombre = br.readLine();
+
+        System.out.println("Ingrese el apellido del empleado:");
+        String apellido = br.readLine();
+
+        System.out.println("Ingrese el género del empleado (M/F):");
+        String genero = br.readLine();
+
+        System.out.println("Ingrese el salario del empleado:");
+        double salario = Double.parseDouble(br.readLine());
+
+        System.out.println("Ingrese la fecha de nacimiento del empleado (YYYY-MM-DD):");
+        LocalDate fechaNacimiento = LocalDate.parse(br.readLine());
+
+        System.out.println("Ingrese la fecha de ingreso del empleado (YYYY-MM-DD):");
+        LocalDate fechaIngreso = LocalDate.parse(br.readLine());
+
+        // Crear objeto del empleado
+        Ejercicio5 empleado = new Ejercicio5(cedula, nombre, apellido, genero, salario, fechaNacimiento, fechaIngreso);
+
+        // Mostrar datos del empleado
+        empleado.mostrarDatosEmpleado();
+
+        // Modificar salario si se requiere
+        System.out.println("¿Desea modificar el salario del empleado? (si/no):");
+        String respuesta = br.readLine();
+        if (respuesta.equalsIgnoreCase("si")) {
+            System.out.println("Ingrese el nuevo salario:");
+            double nuevoSalario = Double.parseDouble(br.readLine());
+            empleado.modificarSalario(nuevoSalario);
+            System.out.println("Salario modificado. Nuevos datos del empleado:");
+            empleado.mostrarDatosEmpleado();
+        }
+    }
+}

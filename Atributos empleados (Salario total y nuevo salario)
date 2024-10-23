@@ -1,0 +1,100 @@
+/* Empleados atributos */
+
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+    public class Empleado {
+        // Atributos privados
+        private String nombre;
+        private int id;
+        private String puesto;
+        private double salarioBase;
+        private double salarioTotal;
+
+        // Constructor para inicializar los atributos del empleado
+        public Empleado(String nombre, int id, String puesto, double salarioBase) {
+            this.nombre = nombre;
+            this.id = id;
+            this.puesto = puesto;
+            this.salarioBase = salarioBase;
+            this.salarioTotal = calcularSalarioTotal();
+        }
+
+        // Getter para obtener el salario total
+        public double getSalarioTotal() {
+            return salarioTotal;
+        }
+
+        // Método para calcular el salario total en función del puesto
+        public double calcularSalarioTotal() {
+            double bono = 0;
+            switch (puesto) {
+                case "gerente":
+                    bono = 0.20; // 20%
+                    break;
+                case "técnico":
+                case "tecnico": // Manejar ambos con acento y sin acento
+                    bono = 0.10; // 10%
+                    break;
+                case "operario":
+                    bono = 0.05; // 5%
+                    break;
+                default:
+                    System.out.println("Puesto no reconocido. No se aplicará bono.");
+            }
+            return salarioBase + (salarioBase * bono);
+        }
+
+        // Método para cambiar el puesto y recalcular el salario
+        public void cambiarPuesto(String nuevoPuesto) {
+            this.puesto = nuevoPuesto;
+            this.salarioTotal = calcularSalarioTotal();
+        }
+
+        // Método para mostrar la información completa del empleado
+        public void mostrarInformacion() {
+            System.out.println("Nombre: " + nombre);
+            System.out.println("ID: " + id);
+            System.out.println("Puesto: " + puesto);
+            System.out.println("Salario base: $" + salarioBase);
+            System.out.println("Salario total (con bono): $" + salarioTotal);
+        }
+
+        //----------------MAIN-------------------//
+
+        public static void main(String[] args) throws IOException {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+            // Crear un nuevo empleado
+            System.out.println("Ingrese el nombre del empleado:");
+            String nombre = br.readLine();
+
+            System.out.println("Ingrese el ID del empleado:");
+            int id = Integer.parseInt(br.readLine());
+
+            System.out.println("Ingrese el puesto del empleado (Gerente, Técnico, Operario):");
+            String puesto = br.readLine();
+
+            System.out.println("Ingrese el salario base del empleado:");
+            double salarioBase = Double.parseDouble(br.readLine());
+
+            // Crear objeto empleado
+            Empleado empleado = new Empleado(nombre, id, puesto, salarioBase);
+
+            // Mostrar la información del empleado
+            empleado.mostrarInformacion();
+
+            // Cambiar el puesto del empleado
+            System.out.println("¿Desea cambiar el puesto del empleado? (si/no)");
+            String respuesta = br.readLine();
+            if (respuesta.equalsIgnoreCase("si")) {
+                System.out.println("Ingrese el nuevo puesto del empleado (Gerente, Técnico, Operario):");
+                String nuevoPuesto = br.readLine();
+                empleado.cambiarPuesto(nuevoPuesto);
+                System.out.println("Información actualizada:");
+                empleado.mostrarInformacion();
+            }
+        }
+    }

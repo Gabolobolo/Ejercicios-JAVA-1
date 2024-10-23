@@ -1,0 +1,222 @@
+public class Main {
+    public static void main(String[] args) {
+        // Crear instancias de Estudiante
+        Estudiante estudiante1 = new Estudiante("Juan Pérez", 20, "A001", 8.5, "Activo");
+        Estudiante estudiante2 = new Estudiante("María López", 21, "A002", 9.0, "Activo");
+
+        // Crear instancia de Curso
+        Curso curso1 = new Curso("CS101", "Programación en Java", 4, "Prof. García");
+
+        // Crear instancia de Profesor
+        Profesor profesor1 = new Profesor("Dr. García", "Informática", 50000.0, "Programación", "Activo");
+
+        // Agregar estudiantes al curso
+        curso1.agregarEstudiante(estudiante1);
+        curso1.agregarEstudiante(estudiante2);
+
+        // Agregar curso al profesor
+        profesor1.agregarCurso(curso1);
+
+        // Mostrar detalles
+        System.out.println("Detalles de los estudiantes:");
+        System.out.println(estudiante1);
+        System.out.println(estudiante2);
+
+        System.out.println("\nDetalles del curso:");
+        System.out.println(curso1);
+
+        System.out.println("\nDetalles del profesor:");
+        System.out.println(profesor1);
+    }
+}
+
+class Estudiante {
+    private String nombre;
+    private int edad;
+    private String matricula;
+    private double promedio;
+    private String estado;
+
+    public Estudiante(String nombre, int edad, String matricula, double promedio, String estado) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.matricula = matricula;
+        this.promedio = promedio;
+        this.estado = estado;
+    }
+
+    // Getters y setters
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public double getPromedio() {
+        return promedio;
+    }
+
+    public void setPromedio(double promedio) {
+        this.promedio = promedio;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "Estudiante: " + nombre + ", Edad: " + edad + ", Matrícula: " + matricula + 
+               ", Promedio: " + promedio + ", Estado: " + estado;
+    }
+}
+
+class Curso {
+    private String codigo;
+    private String nombre;
+    private int creditos;
+    private String profesor;
+    private List<Estudiante> estudiantes;
+
+    public Curso(String codigo, String nombre, int creditos, String profesor) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.creditos = creditos;
+        this.profesor = profesor;
+        this.estudiantes = new ArrayList<>();
+    }
+
+    // Getters y setters
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getCreditos() {
+        return creditos;
+    }
+
+    public void setCreditos(int creditos) {
+        this.creditos = creditos;
+    }
+
+    public String getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(String profesor) {
+        this.profesor = profesor;
+    }
+
+    public void agregarEstudiante(Estudiante estudiante) {
+        estudiantes.add(estudiante);
+    }
+
+    @Override
+    public String toString() {
+        return "Curso: " + nombre + ", Código: " + codigo + ", Créditos: " + creditos + 
+               ", Profesor: " + profesor + ", Estudiantes: " + estudiantes.size();
+    }
+}
+
+class Profesor {
+    private String nombre;
+    private String departamento;
+    private double salario;
+    private String materia;
+    private String estado;
+    private List<Curso> cursos;
+
+    public Profesor(String nombre, String departamento, double salario, String materia, String estado) {
+        this.nombre = nombre;
+        this.departamento = departamento;
+        this.salario = salario;
+        this.materia = materia;
+        this.estado = estado;
+        this.cursos = new ArrayList<>();
+    }
+
+    // Getters y setters
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
+    public String getMateria() {
+        return materia;
+    }
+
+    public void setMateria(String materia) {
+        this.materia = materia;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public void agregarCurso(Curso curso) {
+        cursos.add(curso);
+    }
+
+    @Override
+    public String toString() {
+        return "Profesor: " + nombre + ", Departamento: " + departamento + ", Salario: " + salario + 
+               ", Materia: " + materia + ", Estado: " + estado + ", Cursos: " + cursos.size();
+    }
+}
